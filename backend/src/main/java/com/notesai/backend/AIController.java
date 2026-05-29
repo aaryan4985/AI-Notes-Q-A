@@ -4,11 +4,11 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api")
 public class AIController {
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/ask")
     public AnswerResponse ask(@RequestBody QuestionRequest request) {
 
