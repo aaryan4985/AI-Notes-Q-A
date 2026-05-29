@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
