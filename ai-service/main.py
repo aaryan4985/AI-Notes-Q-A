@@ -5,6 +5,8 @@ from sentence_transformers import SentenceTransformer
 import chromadb
 from pypdf import PdfReader
 import os
+import torch
+from transformers import AutoModelForQuestionAnswering, AutoTokenizer
 
 app = FastAPI()
 
@@ -14,6 +16,11 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 # chroma setup
 client = chromadb.Client()
 collection = client.get_or_create_collection("docs")
+
+# qa model
+qa_model_name = "deepset/roberta-base-squad2"
+qa_tokenizer = AutoTokenizer.from_pretrained(qa_model_name)
+qa_model = AutoModelForQuestionAnswering.from_pretrained(qa_model_name)
 
 
 class Question(BaseModel):
@@ -68,8 +75,24 @@ def ask(q: Question):
 
     docs = results["documents"][0]
 
-    answer = "\n".join(docs)
+    if not docs:
+        return {"answer": "No relevant context found in uploaded documents."}
+
+    context = " ".join(docs)
+
+    inputs = qa_tokenizer(q.question, context, return_tensors="pt", max_length=512, truncation=True)
+    with torch.no_grad():
+        outputs = qa_model(**inputs)
+    
+    answer_start_index = outputs.start_logits.argmax()
+    answer_end_index = outputs.end_logits.argmax()
+    
+    predict_answer_tokens = inputs.input_ids[0, answer_start_index : answer_end_index + 1]
+    extracted_answer = qa_tokenizer.decode(predict_answer_tokens, skip_special_tokens=True)
+
+    if not extracted_answer.strip():
+        extracted_answer = "Could not find a direct answer in the text."
 
     return {
-        "answer": answer
+        "answer": extracted_answer
     }

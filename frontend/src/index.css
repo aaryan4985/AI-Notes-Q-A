@@ -1,111 +1,222 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: #f7f6f2; /* Off-white Bauhaus background */
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+.bauhaus-container {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  width: 90%;
+  max-width: 800px;
+  background: #ffffff;
+  border: 8px solid #1a1a1a;
+  box-shadow: 16px 16px 0px #1a1a1a;
+  position: relative;
+  overflow: hidden;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.bauhaus-header {
+  background-color: #e32b2b; /* Bauhaus Red */
+  border-bottom: 8px solid #1a1a1a;
+  padding: 40px;
+  text-transform: uppercase;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
+.bauhaus-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
   margin: 0;
+  line-height: 1;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.bauhaus-content {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 30px;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.bauhaus-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bauhaus-label {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bauhaus-label::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #1c4b82; /* Bauhaus Blue */
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+}
+
+.bauhaus-input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  border: 4px solid #1a1a1a;
+  background-color: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.bauhaus-input:focus {
+  background-color: #f3c012; /* Bauhaus Yellow */
+  color: #1a1a1a;
+}
+
+.bauhaus-input::placeholder {
+  color: #7a7a7a;
+}
+
+.bauhaus-button {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  background-color: #f3c012; /* Bauhaus Yellow */
+  color: #1a1a1a;
+  border: 4px solid #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 6px 6px 0px #1a1a1a;
+  align-self: flex-start;
+}
+
+.bauhaus-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #1a1a1a;
+}
+
+.bauhaus-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px #1a1a1a;
+}
+
+.bauhaus-button.blue {
+  background-color: #1c4b82; /* Bauhaus Blue */
+  color: #ffffff;
+}
+
+.bauhaus-answer-box {
+  background-color: #ffffff;
+  border: 4px solid #1a1a1a;
+  padding: 20px;
+  min-height: 100px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.bauhaus-answer-box::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 30px;
+  height: 30px;
+  background-color: #e32b2b; /* Bauhaus Red */
+  border: 4px solid #1a1a1a;
+  z-index: 1;
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  flex-grow: 1;
+}
+
+.file-input-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+}
+
+.file-input-btn {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background-color: #ffffff;
+  border: 4px solid #1a1a1a;
+  color: #1a1a1a;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.file-input-wrapper:hover .file-input-btn {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.geometric-accents {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+}
+
+.geo-circle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #f3c012;
+  border: 4px solid #1a1a1a;
+  border-radius: 50%;
+}
+
+.geo-square {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  width: 40px;
+  height: 40px;
+  background-color: #1c4b82;
+  border: 4px solid #1a1a1a;
 }
